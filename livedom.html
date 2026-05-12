@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>DOM</title>
+<style>
+body {
+  font-family: sans-serif;
+  background:#dfe5ec;
+  padding:60px;
+}
+
+.box {
+  display:flex;
+  /*flex-direction: column;*/
+  gap:120px;
+  background:#f7f7f7;
+  padding:50px 70px;
+  border-radius:16px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.1);
+}
+
+h2 {
+  font-size:28px;
+  font-weight:600;
+  margin-bottom:30px;
+}
+
+label {
+  display:block;
+  margin-top:25px;
+  font-size:16px;
+  font-weight:500;
+}
+
+input[type="text"],
+input[type="number"] {
+  width:420px;
+  padding:12px;
+  margin-top:8px;
+  border-radius:8px;
+  border:1px solid #d0d0d0;
+  background:#eeeeee;
+  font-size:15px;
+}
+
+input[type="checkbox"] {
+  margin-top:15px;
+  transform: scale(1.3);
+}
+
+input[type="color"] {
+  width:40px;
+  height:28px;
+  margin-top:12px;
+  border-radius:6px;
+  border:1px solid #ccc;
+  background:#ddd;
+  display:block;
+}
+
+.card {
+  margin-top:40px;
+  padding:30px;
+  width:300px;
+  background:#eeeeee;
+  border:2px solid #333;
+  border-radius:18px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.15);
+}
+
+.member {
+  display:inline-block;
+  background:#f4c400;
+  padding:6px 14px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:bold;
+  margin-bottom:15px;
+}
+
+.card h3 {
+  font-size:22px;
+  margin:10px 0;
+}
+
+.card p {
+  font-size:16px;
+  color:#444;
+  margin:0;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <div>
+    <h2>Update Variables</h2>
+
+    <label>Name (String):</label>
+    <input type="text" id="nameInput" placeholder="">
+
+    <label>Age (Number): </label>
+    <input type="number" placeholder="">
+
+    <label> VIP Status (Boolean): </label>
+      <input type="checkbox" >
+    
+
+    <label>Card Color:</label>
+    <input type="color">
+  </div>
+
+  <div>
+    <h2>Live DOM Output</h2>
+
+    <div class="card">
+      <div class="member">VIP MEMBER</div>
+      <h3>Alex Walker</h3>
+      <p>Age: 28</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const nameInput= document.getElementById("nameInput");
+</script>
+
+</body>
+</html>

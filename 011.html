@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mini Calculator</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#eef2f7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    width:580px;
+    background:white;
+    padding:45px;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:40px;
+    color:#1f2937;
+}
+
+.input-box{
+    display:flex;
+    gap:12px;
+    margin-bottom:35px;
+}
+
+input, select{
+    height:65px;
+    border:1px solid #cfd8e3;
+    border-radius:10px;
+    font-size:22px;
+    padding:0 14px;
+}
+
+input{
+    flex:1;
+}
+
+select{
+    width:85px;
+    text-align:center;
+}
+
+button{
+    width:100%;
+    height:65px;
+    border:none;
+    border-radius:10px;
+    background:#1677ee;
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0f67d6;
+}
+
+.result-box{
+    margin-top:35px;
+    border:1px dashed #cfd8e3;
+    border-radius:10px;
+    padding:25px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.result-box h2{
+    color:#4b5563;
+}
+
+.result{
+    font-size:34px;
+    font-weight:bold;
+    color:#2ca02c;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Mini Calculator</h1>
+
+    <div class="input-box">
+
+        <input type="number" id="num1" value="45">
+
+        <select id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">×</option>
+            <option value="/">÷</option>
+        </select>
+
+        <input type="number" id="num2" value="45">
+
+    </div>
+
+    <button onclick="calculate()">
+        Calculate Amount
+    </button>
+
+    <div class="result-box">
+
+        <h2>Result:</h2>
+
+        <div class="result" id="result">
+            90
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function calculate(){
+
+    let num1 = Number(document.getElementById("num1").value);
+    let num2 = Number(document.getElementById("num2").value);
+    let operator = document.getElementById("operator").value;
+
+    let answer;
+
+    if(operator == "+"){
+        answer = num1 + num2;
+    }
+
+    else if(operator == "-"){
+        answer = num1 - num2;
+    }
+
+    else if(operator == "*"){
+        answer = num1 * num2;
+    }
+
+    else if(operator == "/"){
+        answer = num1 / num2;
+    }
+
+    document.getElementById("result").innerHTML = answer;
+
+}
+
+</script>
+
+</body>
+</html>
