@@ -5,13 +5,15 @@
     <title>Calculator</title>
 
     <style>
+      /* Remove default spacing */
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: sans-serif;
+        font-family: Arial, sans-serif;
       }
 
+      /* Center calculator on screen */
       body {
         height: 700px;
         display: flex;
@@ -20,6 +22,7 @@
         background: #dfe3e8;
       }
 
+      /* Calculator container */
       .calculator {
         width: 320px;
         background: #f7f9fc;
@@ -28,6 +31,7 @@
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       }
 
+      /* Calculator display screen */
       .display {
         width: 100%;
         height: 120px;
@@ -40,12 +44,14 @@
         margin-bottom: 20px;
       }
 
+      /* Grid layout for buttons */
       .buttons {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         gap: 15px;
       }
 
+      /* All buttons style */
       button {
         width: 60px;
         height: 60px;
@@ -57,15 +63,18 @@
         cursor: pointer;
       }
 
+      /* Operator buttons color */
       .operator {
         color: #d14d72;
       }
 
+      /* Equal button style */
       .equal {
         background: #d96b97;
         color: white;
       }
 
+      /* Hover effect */
       button:hover {
         opacity: 0.9;
       }
@@ -75,59 +84,102 @@
 
   <body>
     <div class="calculator">
-      <input type="text" class="display" id="display" value="0" />
+      <!-- Calculator display -->
+      <input type="text" class="display" id="display" value="0" readonly />
 
       <div class="buttons">
+        <!-- Clear all -->
         <button class="operator" onclick="clearDisplay()">C</button>
+
+        <!-- Delete last character -->
         <button class="operator" onclick="backspace()">⌫</button>
+
+        <!-- Percent -->
         <button class="operator" onclick="append('%')">%</button>
+
+        <!-- Division -->
         <button class="operator" onclick="append('/')">÷</button>
 
+        <!-- Number buttons -->
         <button onclick="append('7')">7</button>
         <button onclick="append('8')">8</button>
         <button onclick="append('9')">9</button>
+
+        <!-- Multiplication -->
         <button class="operator" onclick="append('*')">×</button>
 
         <button onclick="append('4')">4</button>
         <button onclick="append('5')">5</button>
         <button onclick="append('6')">6</button>
+
+        <!-- Subtraction -->
         <button class="operator" onclick="append('-')">−</button>
 
         <button onclick="append('1')">1</button>
         <button onclick="append('2')">2</button>
         <button onclick="append('3')">3</button>
+
+        <!-- Addition -->
         <button class="operator" onclick="append('+')">+</button>
 
-        <button onclick="append('0')">( )</button>
-        <button onclick="append('0')">0</button>
-        <button onclick="append('.')">.</button>
-        <button class="equal" onclick="calculate()">=</button>
+        <!-- Empty bracket button -->
+        <button onclick="append('(')">(</button>
 
+        <!-- Zero -->
+        <button onclick="append('0')">0</button>
+
+        <!-- Decimal -->
+        <button onclick="append('.')">.</button>
+
+        <!-- Calculate answer -->
+        <button class="equal" onclick="calculate()">=</button>
       </div>
     </div>
 
     <script>
+      /* Get display element */
       let display = document.getElementById("display");
 
+      /* Add numbers/operators to display */
+      function append(value) {
+        // Replace 0 with first input
+        if (display.value == "0") {
+          display.value = value;
+        }
+
+        // Add next values
+        else {
+          display.value += value;
+        }
+      }
+
+      /* Clear display */
       function clearDisplay() {
         display.value = "0";
       }
 
+      /* Remove last character */
       function backspace() {
+        // Remove one character from end
         display.value = display.value.slice(0, -1);
 
+        // If empty, show 0
         if (display.value == "") {
           display.value = "0";
         }
       }
 
+      /* Calculate answer */
       function calculate() {
         try {
+          // Evaluate math expression
           display.value = eval(display.value);
-        } catch (error) {
+        } catch {
+          // Show error if invalid
           display.value = "Error";
         }
       }
     </script>
   </body>
 </html>
+```
