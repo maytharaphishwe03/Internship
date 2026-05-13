@@ -5,13 +5,12 @@
     <title>Calculator</title>
 
     <style>
-        
       /* Remove default spacing */
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
-        font-family: Arial, sans-serif;
+        font-family: sans-serif;
       }
 
       /* Center calculator on screen */
@@ -79,15 +78,13 @@
       button:hover {
         opacity: 0.9;
       }
-
     </style>
   </head>
 
   <body>
-
     <div class="calculator">
       <!-- Calculator display -->
-      <input type="text" class="display" id="display" value="0" readonly />
+      <input type="text" class="display" id="display" value="0" />
 
       <div class="buttons">
         <!-- Clear all -->
@@ -125,7 +122,7 @@
         <button class="operator" onclick="append('+')">+</button>
 
         <!-- Empty bracket button -->
-        <button onclick="append('(')">(</button>
+        <button onclick="append('()')">()</button>
 
         <!-- Zero -->
         <button onclick="append('0')">0</button>
@@ -139,21 +136,34 @@
     </div>
 
     <script>
-
       /* Get display element */
       let display = document.getElementById("display");
 
       /* Add numbers/operators to display */
+      function isOperator(char) {
+        return ["+", "-", "*", "/", "%"].includes(char);
+      }
+
+      /* Add numbers/operators to display */
       function append(value) {
-        // Replace 0 with first input
-        if (display.value == "0") {
+        let lastChar = display.value.slice(-1);
+
+        // Replace initial 0
+        if (display.value === "0") {
           display.value = value;
+          return;
         }
 
-        // Add next values
-        else {
-          display.value += value;
+        // Prevent two operators in a row
+        if (isOperator(value)) {
+          if (isOperator(lastChar)) {
+            // replace last operator instead of adding
+            display.value = display.value.slice(0, -1) + value;
+            return;
+          }
         }
+
+        display.value += value;
       }
 
       /* Clear display */
@@ -175,15 +185,13 @@
       /* Calculate answer */
       function calculate() {
         try {
-          // Evaluate math expression
-          display.value = eval(display.value);
+          let expression = display.value.replace(/%/g, "/100");
+
+          display.value = eval(expression);
         } catch {
-          // Show error if invalid
           display.value = "Error";
         }
       }
-
     </script>
   </body>
 </html>
-
