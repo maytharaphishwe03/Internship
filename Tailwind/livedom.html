@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Live DOM Output</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-slate-300 flex items-center justify-center p-10">
+    <div class="bg-gray-100 rounded-2xl shadow-lg p-10">
+      <div class="flex flex-wrap gap-16">
+        <!--left side-->
+        <div>
+          <h1 class="text-5xl font-bold mb-20">Update Variables</h1>
+
+          <!-- name -->
+          <div class="mb-10">
+            <label class="block text-3xl font-semibold mb-4">
+              Name(String):
+            </label>
+
+            <input
+              type="text"
+              id="nameInput"
+              value="Alex Walker"
+              class="w-full border border-gray-300 rounded-lg px-4 text-2xl outline-none"
+            />
+          </div>
+
+          <!-- Age -->
+          <div class="mb-10">
+            <label class="block text-3xl font-semibold mb-4">
+              Age (Number):
+            </label>
+
+            <input
+              type="number"
+              id="ageInput"
+              value="28"
+              class="w-full border border-gray-300 rounded-lg px-4 text-2xl outline-none"
+            />
+          </div>
+
+          <!-- VIP -->
+          <div class="mb-10">
+            <label class="block text-3xl font-semibold mb-4">
+              VIP Status (Boolean):
+            </label>
+
+            <input
+              type="checkbox"
+              id="vipInput"
+              class="w-7 h-7 accent-gray-700" checked
+            />
+          </div>
+
+          <!-- Color -->
+          <div>
+            <label class="block text-3xl font-semibold mb-4">
+              Card Color:
+            </label>
+
+            <input
+              type="color"
+              id="colorInput"
+              value="#f3f4f6"
+              class="w-24 h-10 rounded-lg border border-gray-300 cursor-pointer p-4"
+            />
+          </div>
+        </div>
+
+        <!-- Right Side -->
+        <div>
+          <h1 class="text-5xl font-bold text-center mb-20">Live DOM Output</h1>
+
+          <!-- Card -->
+          <div
+            class="max-w-md mx-auto border-4 border-gray-700 rounded-3xl p-8 shadow-xl transition-all duration-300 bg-white-500;"
+            id="profileCard">
+            <!-- VIP Member -->
+            <div
+              id="vipMember"
+              class="inline-block p-2 bg-yellow-400 text-black font-bold text-lg rounded-full mb-8"
+            >
+              VIP MEMBER
+            </div>
+            <!-- Name -->
+            <h2 id="displayName" class="text-5xl font-bold mb-8">
+              Alex Walker
+            </h2>
+            <!-- Age -->
+            <p id="displayAge" class="text-3xl">Age: 28</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+      const nameInput = document.getElementById("nameInput");
+      const ageInput = document.getElementById("ageInput");
+      const vipInput = document.getElementById("vipInput");
+      const colorInput = document.getElementById("colorInput");
+
+      const displayName = document.getElementById("displayName");
+      const displayAge = document.getElementById("displayAge");
+      const vipMember = document.getElementById("vipMember");
+      const profileCard = document.getElementById("profileCard");
+
+      // Update Name
+      nameInput.addEventListener("input", () => {
+        displayName.textContent = nameInput.value;
+      });
+
+      // Update Age
+      ageInput.addEventListener("input", () => {
+        displayAge.textContent = "Age: " + ageInput.value;
+      });
+
+      // Update VIP Status
+      vipInput.addEventListener("change", () => {
+        vipMember.style.display = vipInput.checked ? "inline-block" : "none";
+      });
+
+      // Update Card Color
+      colorInput.addEventListener("input", () => {
+        profileCard.style.backgroundColor = colorInput.value;
+      });
+    </script>
+  </body>
+</html>
